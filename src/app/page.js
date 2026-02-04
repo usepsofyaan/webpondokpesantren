@@ -1,65 +1,95 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
+
+const slides = [
+  {
+    image: "/slides/bg-1.jpeg",
+    title: "Mahad Ibnu Aqil",
+    subtitle: "Mencetak Generasi Berilmu dan Berakhlak",
+  },
+  {
+    image: "/slides/bg-1.jpeg",
+    title: "Pendidikan Islam Terpadu",
+    subtitle: "Berbasis Al-Qur'an dan Sunnah",
+  },
+  {
+    image: "/slides/bg-1.jpeg",
+    title: "Lingkungan Islami",
+    subtitle: "Nyaman, Aman, dan Kondusif",
+  },
+];
 
 export default function Home() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div>
+      <Navbar />
+
+      {/* SLIDESHOW */}
+      <div className="relative w-full h-[70vh] overflow-hidden">
+        {slides.map((slide, index) => (
+          <div key={index} className={`absolute inset-0 transition-opacity duration-1000 ${index === current ? "opacity-100" : "opacity-0"}`}>
+            {/* IMAGE */}
+            <Image src={slide.image} alt={slide.title} fill priority={index === 0} className="object-cover" />
+
+            {/* OVERLAY DARK */}
+            <div className="absolute inset-0 bg-black/50" />
+
+            {/* TEXT OVERLAY */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
+              <h1 className="text-4xl md:text-5xl font-bold tracking-wide">{slide.title}</h1>
+              <p className="mt-4 text-lg md:text-xl max-w-2xl">{slide.subtitle}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* SECTION KBM */}
+      <section className="bg-gray-50 py-16 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Kegiatan Belajar Mengajar</h2>
+          <p className="mt-4 text-gray-600 max-w-3xl mx-auto">Proses pembelajaran di Mahad Ibnu Aqil dirancang untuk membentuk santri yang berilmu, berakhlak, dan berlandaskan nilai-nilai Islam.</p>
+
+          {/* CARD KBM */}
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {/* CARD 1 */}
+            <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition p-6">
+              <img src="/kbm/kbm-1.jpg" alt="Halaqah Al-Qur'an" className="w-full h-48 object-cover rounded-lg" />
+              <h3 className="mt-4 text-xl font-semibold text-gray-800">Halaqah Al-Qur'an</h3>
+              <p className="mt-2 text-gray-600 text-sm">Pembelajaran Al-Qur'an secara talaqqi dan tahfidz dengan bimbingan ustadz berpengalaman.</p>
+            </div>
+
+            {/* CARD 2 */}
+            <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition p-6">
+              <img src="/kbm/kbm-2.jpg" alt="Kajian Kitab" className="w-full h-48 object-cover rounded-lg" />
+              <h3 className="mt-4 text-xl font-semibold text-gray-800">Kajian Kitab</h3>
+              <p className="mt-2 text-gray-600 text-sm">Mengkaji kitab-kitab turats dan kontemporer untuk memperkuat pemahaman agama secara mendalam.</p>
+            </div>
+
+            {/* CARD 3 */}
+            <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition p-6">
+              <img src="/kbm/kbm-3.jpg" alt="Pembelajaran Terpadu" className="w-full h-48 object-cover rounded-lg" />
+              <h3 className="mt-4 text-xl font-semibold text-gray-800">Pembelajaran Terpadu</h3>
+              <p className="mt-2 text-gray-600 text-sm">Integrasi ilmu syar'i dan umum dalam suasana belajar yang nyaman dan kondusif.</p>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
+
+      <Footer />
     </div>
   );
 }
