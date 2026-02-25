@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import FloatingButton from "./components/floatingbutton";
 
 const slides = [
   {
@@ -87,6 +88,68 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* SECTION BERITA TERKINI */}
+      <section className="py-16 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          {/* HEADER */}
+          <div className="text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Berita Terkini</h2>
+            <p className="mt-4 text-gray-600 max-w-3xl mx-auto">Informasi terbaru seputar kegiatan, pengumuman, dan agenda Mahad Ibnu Aqil.</p>
+          </div>
+
+          {/* LIST BERITA */}
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* BERITA 1 */}
+            <div className="bg-gray-50 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
+              <img src="/berita/uts.jpeg" alt="Ujian Tengah Semester" className="w-full h-48 object-cover" />
+              <div className="p-6">
+                <p className="text-sm text-gray-500">10 Januari 2026</p>
+                <h3 className="mt-2 text-xl font-semibold text-gray-800">Pelaksanaan Ujian Tengah Semester</h3>
+                <p className="mt-2 text-gray-600 text-sm">Mahad Ibnu Aqil melaksanakan UTS sebagai evaluasi pembelajaran santri.</p>
+                <a href="#" className="inline-block mt-4 text-green-700 font-medium hover:underline">
+                  Baca Selengkapnya →
+                </a>
+              </div>
+            </div>
+
+            {/* BERITA 2 */}
+            <div className="bg-gray-50 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
+              <img src="/berita/wisuda.jpeg" alt="Wisuda Tahfidz" className="w-full h-48 object-cover" />
+              <div className="p-6">
+                <p className="text-sm text-gray-500">22 Februari 2026</p>
+                <h3 className="mt-2 text-xl font-semibold text-gray-800">Wisuda Tahfidz Santri</h3>
+                <p className="mt-2 text-gray-600 text-sm">Momen haru wisuda tahfidz bagi santri yang telah menyelesaikan hafalan.</p>
+                <a href="#" className="inline-block mt-4 text-green-700 font-medium hover:underline">
+                  Baca Selengkapnya →
+                </a>
+              </div>
+            </div>
+
+            {/* BERITA 3 */}
+            <div className="bg-gray-50 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
+              <img src="/berita/bukapuasa.jpeg" alt="Kegiatan Santri" className="w-full h-48 object-cover" />
+              <div className="p-6">
+                <p className="text-sm text-gray-500">5 Maret 2026</p>
+                <h3 className="mt-2 text-xl font-semibold text-gray-800">Kegiatan Santri di Bulan Ramadhan</h3>
+                <p className="mt-2 text-gray-600 text-sm">Rangkaian kegiatan Ramadhan untuk meningkatkan iman dan amal santri.</p>
+                <a href="#" className="inline-block mt-4 text-green-700 font-medium hover:underline">
+                  Baca Selengkapnya →
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* BUTTON ALL NEWS */}
+          <div className="mt-12 text-center">
+            <a href="/berita" className="inline-block bg-green-700 text-white px-8 py-3 rounded-full hover:bg-green-800 transition">
+              Lihat Semua Berita
+            </a>
+          </div>
+        </div>
+
+        <FloatingButton />
       </section>
 
       <Footer />

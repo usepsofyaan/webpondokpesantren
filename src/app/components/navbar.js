@@ -29,7 +29,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className={`font-bold text-xl tracking-wide text-green-700 dark:text-green-400 transition-opacity duration-500 ${fade ? "opacity-100" : "opacity-0"}`}>
-          {showArabic ? "مَعْهَدُ ابْنُ عَقِيلٍ" : "Ma’had Ibnu Aqil"}
+          {showArabic ? "مَدْرَسَة إِبْتِدَائِيَّة ابْنُ عَقِيلٍ" : "Madrasah Ibtidaiyah Ibnu 'Aqil"}
         </Link>
 
         {/* ===== MENU DESKTOP ===== */}
